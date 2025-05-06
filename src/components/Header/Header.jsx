@@ -88,7 +88,11 @@ const Header = () => {
             className="flex items-center gap-2 z-10"
           >
             <div className="relative">
-              <ShoppingBag className="text-[#2D4A43]" size={28} />
+              <img 
+                src="/cc-logo.png"  // Replace with your actual logo path
+                alt="Campus Cavern Logo"
+                className="h-8 w-auto"  // Adjust height as needed
+              />
               <motion.div 
                 initial={{ scale: 0 }}
                 animate={{ scale: [1, 1.2, 1] }}

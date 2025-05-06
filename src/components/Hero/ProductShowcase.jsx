@@ -4,59 +4,37 @@ import { useState, useEffect } from "react";
 
 const products = [
   { 
-    name: "Campus Hoodie", 
-    price: "₱399.99", 
+    name: "Computer Science T-Shirt (Black)", 
+    price: "₱299.99", 
     color: "#A3C9BC", 
-    image: "hoodie",
-    description: "Cozy and stylish for those chilly campus days"
+    image: "/cs-1.png",
+    description: "Premium black cotton tee with Computer Science department logo. Perfect for classes, hackathons, and campus events."
   },
   { 
-    name: "Student Tote", 
-    price: "₱249.99", 
+    name: "Information Technology T-Shirt (White)", 
+    price: "₱299.99", 
     color: "#5B2333", 
-    image: "tote",
-    description: "Practical and eco-friendly for all your essentials"
+    image: "/it-1.png",
+    description: "Classic white IT department shirt with modern tech-inspired design. Breathable fabric ideal for lab sessions."
   },
   { 
-    name: "Org T-Shirt", 
-    price: "₱199.99", 
+    name: "College of Computing Studies T-Shirt", 
+    price: "₱299.99", 
     color: "#363F46", 
-    image: "tshirt",
-    description: "Show your organization pride with this premium tee"
+    image: "/csg-1.png",
+    description: "Official College of Computer Studies shirt featuring the CCS seal. Show your school pride in style."
   }
 ];
 
-const renderProductIcon = (product) => {
-  const styles = {
-    hoodie: {
-      bg: "linear-gradient(135deg, rgba(163, 201, 188, 0.2) 0%, rgba(163, 201, 188, 0.6) 100%)",
-      icon: <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 8.5V20H4V8.5L8 3H16L20 8.5Z" stroke={product.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M16 3C16 4.65685 14.6569 6 13 6H11C9.34315 6 8 4.65685 8 3" stroke={product.color} strokeWidth="2"/>
-        <path d="M8 11H16" stroke={product.color} strokeWidth="2" strokeLinecap="round"/>
-      </svg>
-    },
-    tote: {
-      bg: "linear-gradient(135deg, rgba(91, 35, 51, 0.2) 0%, rgba(91, 35, 51, 0.6) 100%)",
-      icon: <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 10V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V10" stroke={product.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M4 10H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V10Z" stroke={product.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M8 14H16" stroke={product.color} strokeWidth="2" strokeLinecap="round"/>
-      </svg>
-    },
-    tshirt: {
-      bg: "linear-gradient(135deg, rgba(54, 63, 70, 0.2) 0%, rgba(54, 63, 70, 0.6) 100%)",
-      icon: <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 8L16 4H8L4 8L6 12V20H18V12L20 8Z" stroke={product.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M12 4V10" stroke={product.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M8 4C8 4 8 2 12 2C16 2 16 4 16 4" stroke={product.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    }
-  };
-
+const renderProductImage = (product) => {
   return (
-    <div className="w-full h-full flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 rounded-xl" style={{ background: styles[product.image].bg }}></div>
+    <div className="w-full h-full flex items-center justify-center overflow-hidden relative">
+      <div 
+        className="absolute inset-0" 
+        style={{ 
+          background: `linear-gradient(135deg, ${product.color}20 0%, ${product.color}60 100%)`
+        }}
+      ></div>
       <motion.div 
         animate={{ 
           y: [0, -5, 0],
@@ -67,9 +45,13 @@ const renderProductIcon = (product) => {
           repeat: Infinity,
           repeatType: "reverse"
         }}
-        className="relative z-10"
+        className="relative z-10 w-full h-full"
       >
-        {styles[product.image].icon}
+        <img 
+          src={product.image} 
+          alt={product.name}
+          className="object-cover w-full h-full" // Changed from object-contain to object-cover
+        />
       </motion.div>
     </div>
   );
@@ -145,13 +127,12 @@ const ProductShowcase = () => {
                     repeat: Infinity,
                     repeatType: "reverse"
                   }}
-                  className="relative z-10 w-56 h-56 rounded-2xl shadow-xl overflow-hidden"
+                  className="relative z-10 w-full h-full rounded-2xl shadow-xl overflow-hidden" // Removed fixed dimensions
                   style={{ 
-                    background: `linear-gradient(135deg, white 0%, ${products[currentProduct].color}20 100%)`,
                     boxShadow: `0 20px 50px ${products[currentProduct].color}30`
                   }}
                 >
-                  {renderProductIcon(products[currentProduct])}
+                  {renderProductImage(products[currentProduct])}
                 </motion.div>
               </div>
             </motion.div>
@@ -230,16 +211,6 @@ const ProductShowcase = () => {
         >
           <Award size={14} className="text-[#5B2333]" />
           <span className="text-xs font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>Quality Guaranteed</span>
-        </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.4 }}
-          className="bg-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 border border-[#A3C9BC]"
-        >
-          <Globe size={14} className="text-[#5B2333]" />
-          <span className="text-xs font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>Nationwide Shipping</span>
         </motion.div>
         
         <motion.div

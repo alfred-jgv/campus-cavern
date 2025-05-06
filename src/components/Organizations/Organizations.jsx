@@ -53,7 +53,7 @@ export default function Organizations() {
           />
           <path
             d="M0,160 C240,120 480,200 720,160 C960,120 1200,200 1440,160 L1440,0 L0,0 Z"
-            fill="#2D4A43"
+            fill="#A3C9BC"
             fillOpacity="0.05"
           />
         </svg>

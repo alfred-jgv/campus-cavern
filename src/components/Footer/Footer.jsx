@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Instagram, Facebook, Twitter, Mail } from 'lucide-react';
+import { Instagram, Facebook, Twitter, Mail, ArrowRight, ShoppingBag } from 'lucide-react';
 
 const Footer = () => {
   const containerVariants = {
@@ -21,87 +21,106 @@ const Footer = () => {
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 10
+        damping: 10,
+        duration: 0.5
       }
     }
   };
 
   return (
-    <footer className="relative bg-[#2D4A43] text-[#F7F4F3] pt-20 pb-12 overflow-hidden">
-      {/* Wave divider at top */}
-      <div className="absolute top-0 left-0 w-full h-24 overflow-hidden">
-        <svg className="w-full h-full" viewBox="0 0 1440 100" preserveAspectRatio="none">
-          <path
-            d="M0,0 C240,40 480,0 720,40 C960,80 1200,0 1440,40 L1440,100 L0,100 Z"
-            fill="#F7F4F3"
-          />
-        </svg>
-      </div>
-
+    <footer className="relative bg-[#2D4A43] text-[#F7F4F3] pt-24 pb-16 overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden z-0">
-        <div className="absolute -top-32 -left-32 w-64 h-64 rounded-full bg-[#A3C9BC] opacity-10 blur-3xl"></div>
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-[#2D4A43] opacity-10 blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-full h-32 overflow-hidden">
+          <svg className="w-full h-full" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path
+              d="M0,60 C240,20 480,100 720,60 C960,20 1200,100 1440,60 L1440,0 L0,0 Z"
+              fill="#F7F4F3"
+              fillOpacity="0.1"
+            />
+          </svg>
+        </div>
+        <div className="absolute -top-32 -right-32 w-64 h-64 rounded-full bg-[#A3C9BC] opacity-10 blur-3xl"></div>
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-[#5B2333] opacity-10 blur-3xl"></div>
       </div>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="max-w-7xl mx-auto px-6 relative z-10"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          {/* About Section */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-bold text-[#A3C9BC]">Campus Cavern</h3>
-            <p className="text-[#F7F4F3]/80">
-              Your premier platform for authentic student organization merchandise from verified university clubs.
-            </p>
-            <div className="flex space-x-4 pt-2">
-              {['instagram', 'facebook', 'twitter', 'mail'].map((platform) => (
-                <a 
-                  key={platform}
-                  href="#"
-                  className="text-[#F7F4F3]/70 hover:text-[#A3C9BC] transition-colors"
-                >
-                  {platform === 'instagram' && <Instagram className="h-5 w-5" />}
-                  {platform === 'facebook' && <Facebook className="h-5 w-5" />}
-                  {platform === 'twitter' && <Twitter className="h-5 w-5" />}
-                  {platform === 'mail' && <Mail className="h-5 w-5" />}
-                </a>
-              ))}
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 lg:grid-cols-5 gap-12 mb-16"
+        >
+          {/* Brand section */}
+          <motion.div variants={itemVariants} className="lg:col-span-2">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="relative">
+                <ShoppingBag className="text-[#A3C9BC]" size={28} />
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#A3C9BC] rounded-full animate-pulse"></div>
+              </div>
+              <span className="text-2xl font-bold text-[#F7F4F3]">Campus Cavern</span>
             </div>
+            <p className="text-[#F7F4F3]/80 mb-6 max-w-md">
+              Connecting students with authentic organization merchandise from verified university clubs worldwide.
+            </p>
+            
+            {/* Social links */}
+            <motion.div 
+              variants={itemVariants}
+              className="flex gap-4 mb-8"
+            >
+              {[
+                { icon: <Instagram className="h-5 w-5" />, name: 'Instagram' },
+                { icon: <Facebook className="h-5 w-5" />, name: 'Facebook' },
+                { icon: <Twitter className="h-5 w-5" />, name: 'Twitter' },
+                { icon: <Mail className="h-5 w-5" />, name: 'Email' }
+              ].map((social) => (
+                <motion.a
+                  key={social.name}
+                  whileHover={{ y: -3 }}
+                  href="#"
+                  className="p-2 rounded-full bg-[#F7F4F3]/10 hover:bg-[#A3C9BC]/20 transition-colors"
+                  aria-label={social.name}
+                >
+                  {social.icon}
+                </motion.a>
+              ))}
+            </motion.div>
           </motion.div>
 
-          {/* Quick Links */}
+          {/* Links sections */}
           <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-bold text-[#A3C9BC]">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-[#A3C9BC]">Explore</h3>
             <ul className="space-y-3">
-              {['Home', 'Shop', 'About', 'Contact'].map((item) => (
+              {['Featured', 'New Arrivals', 'Trending', 'Collections'].map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-[#F7F4F3]/80 hover:text-[#A3C9BC] transition-colors">
+                  <motion.a 
+                    whileHover={{ x: 5 }}
+                    href="#" 
+                    className="flex items-center gap-2 text-[#F7F4F3]/80 hover:text-[#A3C9BC] transition-colors"
+                  >
+                    <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {item}
-                  </a>
+                  </motion.a>
                 </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Clubs */}
           <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-bold text-[#A3C9BC]">Featured Clubs</h3>
+            <h3 className="text-lg font-semibold text-[#A3C9BC]">Company</h3>
             <ul className="space-y-3">
-              {[
-                { name: 'AWSCC-UC', full: 'AWS Cloud Club UC' },
-                { name: 'ACSS', full: 'Association of CS Students' },
-                { name: 'SITES', full: 'Society of IT Students' },
-                { name: 'JBECP', full: 'Junior Blockchain Consortium' }
-              ].map((club) => (
-                <li key={club.name}>
-                  <a href="#" className="text-[#F7F4F3]/80 hover:text-[#A3C9BC] transition-colors">
-                    <span className="font-medium">{club.name}</span> - {club.full}
-                  </a>
+              {['About Us', 'Our Mission', 'Careers', 'Press'].map((item) => (
+                <li key={item}>
+                  <motion.a 
+                    whileHover={{ x: 5 }}
+                    href="#" 
+                    className="flex items-center gap-2 text-[#F7F4F3]/80 hover:text-[#A3C9BC] transition-colors"
+                  >
+                    <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {item}
+                  </motion.a>
                 </li>
               ))}
             </ul>
@@ -109,27 +128,53 @@ const Footer = () => {
 
           {/* Newsletter */}
           <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-bold text-[#A3C9BC]">Stay Updated</h3>
-            <p className="text-[#F7F4F3]/80">
-              Subscribe to our newsletter for the latest merch drops and club updates.
+            <h3 className="text-lg font-semibold text-[#A3C9BC]">Stay Updated</h3>
+            <p className="text-[#F7F4F3]/80 mb-4">
+              Get the latest drops and exclusive offers straight to your inbox.
             </p>
-            <div className="flex mt-4">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="px-4 py-2 w-full rounded-l-lg bg-[#F7F4F3]/10 border border-[#A3C9BC]/30 text-[#F7F4F3] focus:outline-none focus:ring-2 focus:ring-[#A3C9BC]"
-              />
-              <button className="px-4 py-2 bg-[#A3C9BC] text-[#2D4A43] font-medium rounded-r-lg hover:bg-[#7AB8A8] transition-colors">
-                Join
-              </button>
+            <div className="flex flex-col gap-4">
+              <div className="relative">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="w-full px-4 py-3 rounded-lg bg-[#F7F4F3]/10 border border-[#A3C9BC]/30 text-[#F7F4F3] placeholder-[#F7F4F3]/60 focus:outline-none focus:ring-2 focus:ring-[#A3C9BC]"
+                />
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 bg-[#A3C9BC] text-[#2D4A43] text-sm font-medium rounded-md hover:bg-[#7AB8A8] transition-colors"
+                >
+                  Join
+                </motion.button>
+              </div>
+              <p className="text-xs text-[#F7F4F3]/50">
+                We respect your privacy. Unsubscribe at any time.
+              </p>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
 
-        <div className="border-t border-[#A3C9BC]/20 pt-8 text-center text-[#F7F4F3]/60">
-          <p>© {new Date().getFullYear()} Campus Cavern. All rights reserved.</p>
-        </div>
-      </motion.div>
+        {/* Bottom section */}
+        <motion.div 
+          variants={itemVariants}
+          className="border-t border-[#A3C9BC]/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <p className="text-sm text-[#F7F4F3]/60">
+            © {new Date().getFullYear()} Campus Cavern. All rights reserved.
+          </p>
+          <div className="flex gap-6">
+            {['Terms', 'Privacy', 'Cookies'].map((item) => (
+              <a 
+                key={item}
+                href="#"
+                className="text-sm text-[#F7F4F3]/60 hover:text-[#A3C9BC] transition-colors"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </footer>
   );
 };

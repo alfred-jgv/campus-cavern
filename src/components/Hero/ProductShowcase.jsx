@@ -8,7 +8,7 @@ const products = [
     price: "₱299.99", 
     color: "#A3C9BC", 
     image: "/cs-1.png",
-    description: "Premium black cotton tee with Computer Science department logo. Perfect for classes, hackathons, and campus events."
+    description: "Black cotton tee with Computer Science department logo. Perfect for classes, hackathons, and campus events."
   },
   { 
     name: "Information Technology T-Shirt", 

@@ -4,21 +4,21 @@ import { useState, useEffect } from "react";
 
 const products = [
   { 
-    name: "Computer Science T-Shirt (Black)", 
+    name: "Computer Science T-Shirt", 
     price: "₱299.99", 
     color: "#A3C9BC", 
     image: "/cs-1.png",
     description: "Premium black cotton tee with Computer Science department logo. Perfect for classes, hackathons, and campus events."
   },
   { 
-    name: "Information Technology T-Shirt (White)", 
+    name: "Information Technology T-Shirt", 
     price: "₱299.99", 
     color: "#5B2333", 
     image: "/it-1.png",
     description: "Classic white IT department shirt with modern tech-inspired design. Breathable fabric ideal for lab sessions."
   },
   { 
-    name: "College of Computing Studies T-Shirt", 
+    name: "CSG Merch", 
     price: "₱299.99", 
     color: "#363F46", 
     image: "/csg-1.png",

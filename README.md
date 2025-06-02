@@ -24,25 +24,9 @@ Campus Cavern is a specialized e-commerce platform designed to help campus organ
 
 ## 🚀 Technology Stack
 
-- **Frontend**: [List your frontend technologies - e.g., React, Vue.js, HTML/CSS/JavaScript]
-- **Styling**: [e.g., Tailwind CSS, Bootstrap, Custom CSS]
-- **Build Tools**: [e.g., Webpack, Vite, etc.]
-
-## 📁 Repository Contents
-
-This repository contains **FRONTEND CODE ONLY** and serves as a **DISPLAY/PORTFOLIO PURPOSES**.
-
-```
-campus-cavern/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── styles/
-│   └── assets/
-├── public/
-├── package.json
-└── README.md
-```
+- **Frontend**: [React]
+- **Styling**: [Tailwind CSS, Bootstrap]
+- **Build Tools**: [Vite]
 
 ## 👥 Development Team
 
